@@ -14,3 +14,23 @@ code->void rotate(vector<vector<int>>& matrix) {
             reverse(matrix[i].begin(),matrix[i].end());
         }
     }
+    
+2.Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals, 
+and return an array of the non-overlapping intervals that cover all the intervals in the input.  
+code->vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        vector<vector<int>>ans;
+        sort(intervals.begin(),intervals.end());
+        vector<int>temp_intervals=intervals[0];
+        
+        for (auto it:intervals){
+            if(it[0]<=temp_intervals[1]){
+                temp_intervals[1]=max(it[1],temp_intervals[1]);
+                
+            }else{
+                ans.push_back(temp_intervals);
+                temp_intervals=it;
+            }
+        }
+        ans.push_back(temp_intervals);
+        return ans;
+    }
