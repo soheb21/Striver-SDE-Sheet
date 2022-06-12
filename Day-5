@@ -46,3 +46,20 @@ code-> bool searchMatrix(vector<vector<int>>& matrix, int target) {
        if (n < 0) ans = (double)(1.0) / (double)(ans);
     return ans;
     }
+ 3.Given an array nums of size n, return the majority element.
+The majority element is the element that appears more than ⌊n / 2⌋ times. 
+You may assume that the majority element always exists in the array.
+code->int majorityElement(vector<int>& nums) {
+    int count = 0;
+        int candidate = 0;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            if(num==candidate) count += 1; 
+            else count -= 1; 
+        }
+
+        return candidate;
+    }
