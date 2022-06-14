@@ -64,3 +64,19 @@ int MergeSort(vector < int > & nums, int low, int high) {
     int reversePairs(vector<int>& nums) {
         return MergeSort(nums,0,nums.size()-1);
     }
+3.Given an array of integers nums and an integer target, 
+return indices of the two numbers such that they add up to target.
+https://leetcode.com/problems/two-sum/'
+code->map<int,int>mp;
+        vector<int>ans;
+        for(int i=0;i<nums.size();i++){
+            int search_pair=target-nums[i];
+            if(mp.find(search_pair)!=mp.end()){
+                int index =mp.find(search_pair)->second;
+                ans.push_back(index);
+                ans.push_back(i);
+                return ans;
+            }
+            mp.insert(pair<int,int>(nums[i],i));
+        }
+        return ans;
