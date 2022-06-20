@@ -33,6 +33,20 @@ code->int solve(vector<int> &A, int B) {
         if(visited.find(h)!=visited.end()){
             c=c+visited[h];
         }
-        visited[cpx]++;
+3.Longest Substring Without Repeating Character?
+code->  int lengthOfLongestSubstring(string s) {
+        //Sliding Window 
+       int count[256]={0};
+        int l=0,r=0,ans=0;
+        while(r<s.size()){
+            count[s[r]]++;
+            while(count[s[r]]>1){
+                count[s[l]]--;
+                l++;
+            }
+            ans=max(ans,r-l+1);
+            r++;
+        }
+        return ans;
     }
-    return c;    
+       
