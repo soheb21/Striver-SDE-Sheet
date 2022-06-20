@@ -1,0 +1,22 @@
+1.You just have to complete the function maxLen() which takes two arguments an array A and n, 
+where n is the size of the array A and returns the length of the largest subarray with 0 sum.
+Expected Time Complexity: O(N).
+Expected Auxiliary Space: O(N).
+code-> int maxLen(vector<int>&A, int n)
+    {   
+        unordered_map<int,int>mp;// for current prefix sum and index.
+        int prefix_sum=0,maxi=0;
+        for (int i=0;i<n;i++){
+            prefix_sum+=A[i];
+            if(prefix_sum==0){
+            maxi=i+1;
+            }else{
+                if(mp.find(prefix_sum)!=mp.end()){
+                    maxi=max(maxi,i-mp[prefix_sum]); // current index - map index 
+                }else{
+                    mp[prefix_sum]=i;
+                }
+            }
+        }
+        return maxi;
+    }
