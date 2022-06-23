@@ -1,0 +1,36 @@
+1.Given the head of a singly linked list, reverse the list, and return the reversed list.
+https://leetcode.com/problems/reverse-linked-list/
+code->ListNode* reverseList(ListNode* head) {
+      ListNode *curr=head,*next=head,*pre=NULL;
+        while(curr){
+            
+             next=curr->next;
+            curr->next=pre;
+            pre=curr;
+            curr=next;
+            
+        }
+        return pre;
+    }
+  2.Given the head of a singly linked list, return the middle node of the linked list.
+  code-> ListNode* middleNode(ListNode* head) {
+        ListNode *slow = head, *fast = head;
+        while (fast && fast->next)
+            slow = slow->next, fast = fast->next->next;
+        return slow;
+    }
+  3.You are given the heads of two sorted linked lists list1 and list2.
+Merge the two lists in a one sorted list. The list should be made by splicing 
+together the nodes of the first two lists.
+code->ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        if(list1==NULL or list2==NULL) {
+            return (list1==NULL?list2:list1);
+        }
+        if(list1->val>list2->val){
+            list2->next=( mergeTwoLists(list2->next,list1));
+            return list2;
+        }else{
+            list1->next=( mergeTwoLists(list1->next,list2));
+            return list1;
+        }
+    }
