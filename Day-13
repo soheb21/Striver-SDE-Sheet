@@ -55,3 +55,30 @@ code-> bool ispal(ListNode* &left,ListNode* right){
     bool isPalindrome(ListNode* head) {
         return ispal(head,head);
     }
+3.Given the head of a linked list, return the node where the cycle begins. 
+If there is no cycle, return null.
+Input: head = [3,2,0,-4], pos = 1
+Output: tail connects to node index 1
+Explanation: There is a cycle in the linked list, where tail connects to the second node.
+https://leetcode.com/problems/linked-list-cycle-ii/
+code-> ListNode *detectCycle(ListNode *head) {
+         if(head == NULL||head->next == NULL) return NULL;
+        
+    ListNode* fast = head;
+    ListNode* slow = head;
+    ListNode* entry = head;
+        
+    while(fast->next != NULL&&fast->next->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+            
+        if(slow == fast) {
+            while(slow != entry) {
+                slow = slow->next;
+                entry = entry->next;
+            }
+            return slow;
+        }
+    }
+    return NULL;
+    }
