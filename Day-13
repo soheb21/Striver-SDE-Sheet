@@ -38,3 +38,20 @@ code->int length(ListNode* head){
         int le=length(head);
         return rev(head,k,le);
     }
+2.Given the head of a singly linked list, return true if it is a palindrome.
+Input: head = [1,2,2,1]
+Output: true
+code-> bool ispal(ListNode* &left,ListNode* right){
+        if(right==NULL) return true;
+        
+        bool first=ispal(left,right->next);
+         if(first==false) return false;
+        
+        bool second=(left->val==right->val);
+        left=left->next;
+        
+        return second;
+    }
+    bool isPalindrome(ListNode* head) {
+        return ispal(head,head);
+    }
