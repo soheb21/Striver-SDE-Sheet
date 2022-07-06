@@ -51,3 +51,29 @@ Node *flatten(Node *root)
    
    return root;
 }
+
+2.Given the head of a linked list, rotate the list to the right by k places.
+Input: head = [1,2,3,4,5], k = 2
+Output: [4,5,1,2,3]
+summary:  ListNode* rotateRight(ListNode* head, int k) {
+        //edge case
+        if(head==NULL||head->next==NULL|| k==0) return head;
+        
+        ListNode *curr=head;
+        int len=1;
+        while(curr->next!=NULL){
+            curr=curr->next;
+            len++;
+        }
+        curr->next=head;
+        k=k%len;// agar k value len se badii ho
+        k=len-k;
+        while(k--){
+            curr=curr->next;
+        }
+        head=curr->next;
+        curr->next=NULL;
+        
+        return head;
+        
+    }
